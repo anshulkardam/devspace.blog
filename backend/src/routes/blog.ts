@@ -1,3 +1,4 @@
+import { blogSchema, blogupdateSchema } from "@anshulkardam/medium-common";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
@@ -30,7 +31,10 @@ blogRouter.use('/*', async (c, next) => {
 blogRouter.post('/', async (c) => {
     const payLoad = await c.req.json()
     const id = c.get("userId")
-   
+    const { success } = blogSchema.safeParse(payLoad)
+    if(!success){
+        return c.json({msg: "validation failed"})
+    }
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
@@ -48,7 +52,10 @@ blogRouter.post('/', async (c) => {
 })
 blogRouter.put('/', async (c) => {
     const payLoad = await c.req.json()
-
+    const { success } = blogupdateSchema.safeParse(payLoad)
+    if(!success){
+        return c.json({msg:"validation failed"})
+    }
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())

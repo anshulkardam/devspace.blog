@@ -1,3 +1,4 @@
+import { signinSchema, signupSchema } from "@anshulkardam/medium-common";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
@@ -17,6 +18,11 @@ userRouter.post('/signup', async (c) => {
     }).$extends(withAccelerate())
   
     const payLoad = await c.req.json();
+    const { success } = signupSchema.safeParse(payLoad)
+    if (!success){
+      return c.json({msg:"validation failed"})
+    }
+
     try{
           const user = await prisma.user.create({
                         data: {
@@ -45,6 +51,10 @@ userRouter.post('/signup', async (c) => {
       datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
     const payLoad = await c.req.json();
+    const { success } = signinSchema.safeParse(payLoad)
+    if(!success){
+      return c.json({msg: "validation failed"})
+    }
     const user = await prisma.user.findUnique({
       where :{ 
         email: payLoad.email,
