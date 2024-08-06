@@ -1,7 +1,24 @@
+import { Appbar } from "../components/Appbar"
 import { BlogCard } from "../components/BlogCard"
+import { useBlogs } from "../hooks/useBlogs"
 
-export const Blogs = () =>{
+export const Blogs = () => {
+    const { loading, blogs } = useBlogs()
+    if (loading) {
+        return <div>loading....</div>
+    }
     return <div>
-        <BlogCard authorName="Anshul Kardam" title="I love my Girlfriend" content="I love my Girlfriend so much" PublishedDate="6th August"/>
+        <Appbar />
+        <div className="flex justify-center pt-4">
+            <div>
+                {blogs.map(c =>
+                    <BlogCard authorName={c.author.firstName}
+                              title= {c.title}
+                              content= {c.content}
+                              PublishedDate="6th AUG"/>
+                )}
+
+            </div>
+        </div>
     </div>
 }

@@ -34,7 +34,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// .wrangler/tmp/bundle-hjbDPM/checked-fetch.js
+// .wrangler/tmp/bundle-JsdRhz/checked-fetch.js
 function checkURL(request, init) {
   const url = request instanceof URL ? request : new URL(
     (typeof request === "string" ? new Request(request, init) : request).url
@@ -52,7 +52,7 @@ function checkURL(request, init) {
 }
 var urls;
 var init_checked_fetch = __esm({
-  ".wrangler/tmp/bundle-hjbDPM/checked-fetch.js"() {
+  ".wrangler/tmp/bundle-JsdRhz/checked-fetch.js"() {
     "use strict";
     urls = /* @__PURE__ */ new Set();
     globalThis.fetch = new Proxy(globalThis.fetch, {
@@ -10644,11 +10644,11 @@ var require_default_index = __commonJS({
   }
 });
 
-// .wrangler/tmp/bundle-hjbDPM/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-JsdRhz/middleware-loader.entry.ts
 init_checked_fetch();
 init_modules_watch_stub();
 
-// .wrangler/tmp/bundle-hjbDPM/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-JsdRhz/middleware-insertion-facade.js
 init_checked_fetch();
 init_modules_watch_stub();
 
@@ -12937,9 +12937,7 @@ userRouter.post("/signup", async (c) => {
       }
     });
     const token = await sign2({ id: user.id }, c.env.JWT_SECRET);
-    return c.json({
-      message: "User Created! this is your token " + token
-    });
+    return c.json(token);
   } catch (e) {
     return c.json({
       message: "ERROR WHILE SIGNING UP"
@@ -12966,7 +12964,7 @@ userRouter.post("/signin", async (c) => {
     return c.json({ msg: "wrong username/password" });
   }
   const token = await sign2({ id: user.id }, c.env.JWT_SECRET);
-  return c.json({ msg: "Hello user " + token });
+  return c.json(token);
 });
 
 // src/routes/blog.ts
@@ -12984,7 +12982,7 @@ blogRouter.use("/*", async (c, next) => {
       await next();
     }
   } catch (e) {
-    return c.json({ msg: "caught error" });
+    return c.json({ msg: "caught error HERE" });
   }
 });
 blogRouter.post("/", async (c) => {
@@ -13004,7 +13002,6 @@ blogRouter.post("/", async (c) => {
       authorId: id
     }
   });
-  console.log(blog);
   return c.json({ id: blog.id });
 });
 blogRouter.put("/", async (c) => {
@@ -13036,7 +13033,19 @@ blogRouter.get("/bulk", async (c) => {
   const prisma = new import_edge2.PrismaClient({
     datasourceUrl: c.env.DATABASE_URL
   }).$extends(withAccelerate());
-  const all = await prisma.blog.findMany();
+  const all = await prisma.blog.findMany({
+    select: {
+      content: true,
+      title: true,
+      id: true,
+      author: {
+        select: {
+          firstName: true,
+          lastName: true
+        }
+      }
+    }
+  });
   return c.json(all);
 });
 blogRouter.get("/:id", async (c) => {
@@ -13176,7 +13185,7 @@ var jsonError = async (request, env, _ctx, middlewareCtx) => {
 };
 var middleware_miniflare3_json_error_default = jsonError;
 
-// .wrangler/tmp/bundle-hjbDPM/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-JsdRhz/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   ...void 0 ?? [],
   middleware_ensure_req_body_drained_default,
@@ -13208,7 +13217,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
   ]);
 }
 
-// .wrangler/tmp/bundle-hjbDPM/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-JsdRhz/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;
