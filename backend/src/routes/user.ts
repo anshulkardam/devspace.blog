@@ -61,7 +61,6 @@ userRouter.post('/signup', async (c) => {
         password: payLoad.password
       }
     })
-    console.log(user)
     if(!user){
       c.status(403)
       return c.json({msg:"wrong username/password"})
