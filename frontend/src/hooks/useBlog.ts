@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { BACKEND_URL } from "../config"
+import axios from "axios"
 
-interface blogsType {
+export interface blogType {
     "content": string
     "title": string
-    "id": string
     "author": {
         "firstName": string
         "lastName": string
@@ -13,22 +12,22 @@ interface blogsType {
 
 }
 
-export const useBlogs = () => {
+export const useBlog = ({id} : {id: string}) => {
 
     const [loading, setLoading] = useState(false)
-    const [blogs, setBlogs] = useState<blogsType[]>([])
+    const [blog, setBlog] = useState<blogType[]>([])
     useEffect(() => {
         async function get(){
-            const response = await axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+            const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
                 headers: {
                     Authorization: localStorage.getItem("token")
                 }
             })
-            setBlogs(response.data)
+            setBlog(response.data.find)
             setLoading(true)
         }
         get();
     },[])
-return { loading, blogs }
+return { loading, blog }
 
 }

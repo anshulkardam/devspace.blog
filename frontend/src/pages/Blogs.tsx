@@ -4,15 +4,16 @@ import { useBlogs } from "../hooks/useBlogs"
 
 export const Blogs = () => {
     const { loading, blogs } = useBlogs()
-    if (loading) {
+    if (!loading) {
         return <div>loading....</div>
     }
     return <div>
-        <Appbar />
+        <Appbar name="F" />
         <div className="flex justify-center pt-4">
             <div>
                 {blogs.map(c =>
-                    <BlogCard authorName={c.author.firstName}
+                    <BlogCard id = {c.id}
+                              authorName={c.author.firstName}
                               title= {c.title}
                               content= {c.content}
                               PublishedDate="6th AUG"/>
