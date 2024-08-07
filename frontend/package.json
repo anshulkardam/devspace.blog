@@ -11,12 +11,22 @@
   },
   "dependencies": {
     "@anshulkardam/medium-common": "^1.0.0",
+    "@tiptap/core": "^2.5.9",
+    "@tiptap/extension-bullet-list": "^2.5.9",
+    "@tiptap/extension-heading": "^2.5.9",
+    "@tiptap/extension-ordered-list": "^2.5.9",
+    "@tiptap/extension-underline": "^2.5.9",
+    "@tiptap/pm": "^2.5.9",
+    "@tiptap/react": "^2.5.9",
+    "@tiptap/starter-kit": "^2.5.9",
     "axios": "^1.7.3",
+    "html-react-parser": "^5.1.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.14",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
