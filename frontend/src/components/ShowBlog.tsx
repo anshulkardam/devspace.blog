@@ -1,6 +1,7 @@
 import { blogType } from "../hooks/useBlog"
 import { Appbar } from "./Appbar"
 import { Avatar } from "./BlogCard"
+import parse from 'html-react-parser';
 
 export const ShowBlog = ({ blog }: { blog: blogType }) => {
     return <div>
@@ -14,8 +15,8 @@ export const ShowBlog = ({ blog }: { blog: blogType }) => {
                     <div className="text-slate-600 pt-3">
                         Posted on 6th august
                     </div>
-                    <div>
-                        {blog.content}
+                    <div className="tiptap">
+                        {parse(blog.content)}
                     </div>
                 </div>
                 <div className=" col-span-4">
