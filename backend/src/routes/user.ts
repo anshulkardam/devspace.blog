@@ -20,7 +20,7 @@ userRouter.post('/signup', async (c) => {
     const payLoad = await c.req.json();
     const { success } = signupSchema.safeParse(payLoad)
     if (!success){
-      return c.json({msg:"validation failed"})
+      return c.json({message:"validation failed"})
     }
 
     try{
@@ -29,7 +29,8 @@ userRouter.post('/signup', async (c) => {
                           email: payLoad.email ,
                           password: payLoad.password,
                           firstName: payLoad.firstName,
-                          lastName: payLoad.lastName
+                          lastName: payLoad.lastName,
+                          bio: payLoad.bio
                         }
     })
     
@@ -51,7 +52,7 @@ userRouter.post('/signup', async (c) => {
     const payLoad = await c.req.json();
     const { success } = signinSchema.safeParse(payLoad)
     if(!success){
-      return c.json({msg: "validation failed"})
+      return c.json({message: "validation failed"})
     }
     const user = await prisma.user.findUnique({
       where :{ 
@@ -61,7 +62,7 @@ userRouter.post('/signup', async (c) => {
     })
     if(!user){
       c.status(403)
-      return c.json({msg:"wrong username/password"})
+      return c.json({message:"wrong username/password"})
     }
   
     const token = await sign ({id: user.id}, c.env.JWT_SECRET)

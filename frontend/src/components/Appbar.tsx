@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export const Appbar = ({name} : {name: string}) => {
     return <div className="flex justify-between items-center border-b px-10 py-3 font-semibold">
-        <Link to={"/blogs"}>
+        <Link to={"/"}>
         <div className="text-lg font-semibold cursor-pointer">
             Story Sphere
         </div>

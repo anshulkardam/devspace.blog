@@ -20,6 +20,7 @@ model User {
   firstName     String
   lastName      String
   password      String 
+  bio           String
   blogs         Blog[]
 
 }
@@ -32,5 +33,5 @@ model Blog{
   published     Boolean @default(false)
   author        User    @relation(fields: [authorId], references: [id])
   authorId      String
-
+  createdAt     DateTime  @default(now())
 }

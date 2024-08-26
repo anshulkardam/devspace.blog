@@ -6,6 +6,7 @@ interface blogsType {
     "content": string
     "title": string
     "id": string
+    "createdAt" : any
     "author": {
         "firstName": string
         "lastName": string

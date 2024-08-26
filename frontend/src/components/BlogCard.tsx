@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-
+import parse from 'html-react-parser';
 interface BlogCardProps {
     id: string
     authorName: string
@@ -9,6 +9,8 @@ interface BlogCardProps {
 }
 export const BlogCard = ({id, authorName, title, content, PublishedDate }: BlogCardProps) => {
 
+    const truncatedContent =  content.slice(0, 50) + "...";
+   
     return <div >
         <div className="flex w-screen max-w-screen-lg ">
             <div className="flex flex-col justify-center">
@@ -32,7 +34,7 @@ export const BlogCard = ({id, authorName, title, content, PublishedDate }: BlogC
             </Link>
         </div>
         <div className="text-base">
-            {content.slice(0, 100) + "..."}
+        {parse(truncatedContent)}
         </div>
         <div className="text-sm font-light pt-2">
             {`${Math.ceil(content.length / 100)} minutes read`}

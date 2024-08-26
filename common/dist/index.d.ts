@@ -4,16 +4,19 @@ export declare const signupSchema: z.ZodObject<{
     password: z.ZodString;
     firstName: z.ZodString;
     lastName: z.ZodString;
+    bio: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     email: string;
     password: string;
     firstName: string;
     lastName: string;
+    bio: string;
 }, {
     email: string;
     password: string;
     firstName: string;
     lastName: string;
+    bio: string;
 }>;
 export declare const signinSchema: z.ZodObject<{
     email: z.ZodString;

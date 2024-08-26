@@ -5,9 +5,11 @@ import axios from "axios"
 export interface blogType {
     "content": string
     "title": string
+    "createdAt" : any
     "author": {
         "firstName": string
         "lastName": string
+        "bio": string
     }
 
 }

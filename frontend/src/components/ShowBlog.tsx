@@ -4,6 +4,15 @@ import { Avatar } from "./BlogCard"
 import parse from 'html-react-parser';
 
 export const ShowBlog = ({ blog }: { blog: blogType }) => {
+    const formatDate = (isoDateString: string): string => {
+        const date = new Date(isoDateString);
+        return date.toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        });
+      };
+    console.log("anshul",blog)
     return <div>
         <Appbar name={blog.author.firstName}/>
         <div className="flex justify-center">
@@ -13,7 +22,7 @@ export const ShowBlog = ({ blog }: { blog: blogType }) => {
                         {blog.title}
                     </div>
                     <div className="text-slate-600 pt-3">
-                        Posted on 6th august
+                    {formatDate(blog.createdAt)}
                     </div>
                     <div className="tiptap">
                         {parse(blog.content)}
@@ -32,7 +41,7 @@ export const ShowBlog = ({ blog }: { blog: blogType }) => {
                         </div>
                     </div>
                     <div className="pt-1 text-slate-600">
-                        This Author Loves his Girlfriend so much and he always wants her to be by his side
+                        {blog.author.bio}
                     </div>
                 </div>
 

@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@anshulkardam/medium-common": "^1.0.0",
+    "@anshulkardam/medium-common": "^1.0.1",
+    "@heroicons/react": "^2.1.5",
+    "@react-three/drei": "^9.111.3",
+    "@react-three/fiber": "^8.17.6",
     "@tiptap/core": "^2.5.9",
     "@tiptap/extension-bullet-list": "^2.5.9",
     "@tiptap/extension-heading": "^2.5.9",
@@ -20,10 +23,16 @@
     "@tiptap/react": "^2.5.9",
     "@tiptap/starter-kit": "^2.5.9",
     "axios": "^1.7.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.3.30",
+    "heroicons": "^2.1.5",
     "html-react-parser": "^5.1.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.0"
+    "react-router-dom": "^6.26.0",
+    "tailwind-merge": "^2.5.2",
+    "three": "^0.167.1",
+    "three-globe": "^2.31.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.14",

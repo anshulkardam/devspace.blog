@@ -22,7 +22,9 @@ blogRouter.use('/*', async (c, next) => {
         c.set("userId", user.id)
         await next();
     } } catch(e){
-        return c.json({msg: "caught error HERE"})
+        console.log(e)
+        c.status(403)
+        return c.json({msg: "caught error here"})
     }
 
 })
@@ -32,7 +34,7 @@ blogRouter.post('/', async (c) => {
     const id = c.get("userId")
     const { success } = blogSchema.safeParse(payLoad)
     if(!success){
-        return c.json({msg: "validation failed"})
+        return c.json({message: "validation failed"})
     }
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
@@ -86,10 +88,11 @@ blogRouter.get('/bulk', async (c) => {
             content: true,
             title: true,
             id: true,
+            createdAt:true,
             author:{
                 select:{
                     firstName: true,
-                    lastName: true
+                    lastName: true,
                 }
             }
         }
@@ -111,10 +114,12 @@ blogRouter.get('/:id', async (c) => {
         select: {
             title: true,
             content: true,
+            createdAt:true,
             author: {
                 select: {
                     firstName: true,
-                    lastName: true
+                    lastName: true,
+                    bio: true
                 }
                
             }
