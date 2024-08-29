@@ -3,23 +3,23 @@ import { BACKEND_URL } from "../config"
 import axios from "axios"
 
 export interface blogType {
-    "content": string
-    "title": string
-    "createdAt" : any
-    "author": {
-        "firstName": string
-        "lastName": string
-        "bio": string
+    content: string
+    title: string
+    createdAt: any
+    author: {
+        firstName: string
+        lastName: string
+        bio: string
     }
 
 }
 
-export const useBlog = ({id} : {id: string}) => {
+export const useBlog = ({ id }: { id: string }) => {
 
     const [loading, setLoading] = useState(false)
-    const [blog, setBlog] = useState<blogType[]>([])
+    const [blog, setBlog] = useState<blogType | null>(null);
     useEffect(() => {
-        async function get(){
+        async function get() {
             const response = await axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
                 headers: {
                     Authorization: localStorage.getItem("token")
@@ -29,7 +29,7 @@ export const useBlog = ({id} : {id: string}) => {
             setLoading(true)
         }
         get();
-    },[])
-return { loading, blog }
+    }, [])
+    return { loading, blog }
 
 }

@@ -10,7 +10,7 @@ export const Blog = () => {
     console.log(blog)
     if (!loading) {
         return <div>
-            
+
             <div className="flex flex-col h-screen justify-center">
                 <div className="flex justify-center">
                     <Spinner />
@@ -19,6 +19,8 @@ export const Blog = () => {
         </div>
     }
     return <div>
-        <ShowBlog blog={blog} />
+    
+    {blog ? <ShowBlog blog={blog} /> : <div>No blog data available.</div>}
+    
     </div>
 }
