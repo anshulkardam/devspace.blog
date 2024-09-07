@@ -26,27 +26,37 @@ export const HomePage = () => {
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+        <section
+          className="w-full py-12 md:py-24 lg:py-32 xl:py-48 flex items-center justify-center bg-cover bg-center bg-no-repeat" // Added background image styling
+          style={{
+            backgroundImage: "url('globe.png')",
+            backgroundSize: '650px 650px', // Set specific width and height for the background image
+            backgroundPosition: 'left',  // Adjust image position to the center
+            backgroundRepeat: 'no-repeat'
+          }} // Inline style to set the background image URL
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                <h1 className=" text-neutral-800 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
                   Welcome to Story Sphere
                 </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                <p className="mx-auto max-w-[700px] text-gray-400 md:text-xl">
                   Unleash your creativity and connect with readers worldwide. Start your blogging journey today.
                 </p>
               </div>
-              <div >
+              <div>
                 <Link to={'/signin'} className="space-x-4 flex items-center">
-               <Button size={'xl'} className="px-2" color="dark">Get Started</Button>
-                <Button size={'xl'} className="px-2" color="light">Learn More</Button>
+                  <Button size={'xl'} className="px-2" color="dark">Get Started</Button>
+                  <Button size={'xl'} className="px-2" color="light">Learn More</Button>
                 </Link>
               </div>
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800  flex items-center justify-center"
+        >
           <div className="container px-4 md:px-6">
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
@@ -73,19 +83,22 @@ export const HomePage = () => {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="w-full py-12 md:py-24 lg:py-32  flex items-center justify-center"
+          >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Start Your Story Today</h2>
-                <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                <p className="max-w-[600px] text-black md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed  ">
                   Join Story Sphere and become part of a vibrant community of writers and readers.
                 </p>
               </div>
               <div className="w-full max-w-sm space-y-2">
                 <form className="flex space-x-2 items-center">
                   <input className="max-w-lg flex-1 border rounded-md p-2" placeholder="Enter your email" type="email" />
-                  <Button size={'lg'} className="px-2" color="dark" type="submit">Sign Up</Button> 
+                  <Link to={'/signup'} >
+                    <Button size={'lg'} className="px-2" color="dark" type="submit">Sign Up</Button>
+                  </Link>
                 </form>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   By signing up, you agree to our{" "}

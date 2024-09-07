@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom"
 
 export const Appbar = ({name} : {name: string}) => {
-    return <div className="flex justify-between items-center border-b px-10 py-3 font-semibold">
-        <Link to={"/"}>
-        <div className="text-lg font-semibold cursor-pointer">
-            Story Sphere
+    return <div className="flex justify-between items-center border-b px-10 py-3  ">
+        <Link to={"/blogs"}>
+        <div className="text-3xl font-serif cursor-pointer items-center gap-2 font-extrabold flex">
+            StorySphere
+            <img src="/globe.png" className="w-11 h-11" />
         </div>
         </Link>
         <div className="flex">
