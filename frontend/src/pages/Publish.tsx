@@ -5,7 +5,7 @@ import TipTap from "../components/Tiptap"
 export const Publish = () => {
   return <div>
             <Appbar name="A" />
-            <div className="ml-32 mt-7 ">
+            <div className="flex justify-center pt-5 ">
             <TipTap />
             </div>
     </div>

@@ -9,14 +9,14 @@ interface BlogCardProps {
 }
 export const BlogCard = ({id, authorName, title, content, PublishedDate }: BlogCardProps) => {
 
-    const truncatedContent =  content.slice(0, 50) + "...";
+    const truncatedContent = content.length > 50 ? content.slice(0, 50) + "..." : content;
    
-    return <div >
-        <div className="flex w-screen max-w-screen-lg ">
+    return <div className=" border-b p-6 mb-2">
+        <div className="flex font-serif">
             <div className="flex flex-col justify-center">
                 <Avatar name={authorName} />
             </div>
-            <div className="font-semibold pl-2">
+            <div className="font-bold text-base pl-2">
                 {authorName}
             </div>
             <div className="flex flex-col justify-center">
@@ -24,7 +24,7 @@ export const BlogCard = ({id, authorName, title, content, PublishedDate }: BlogC
                     &#8226;
                 </div>
             </div>
-            <div className="pl-2 text-slate-500">
+            <div className="pl-2 text-slate-500 font-medium">
                 {PublishedDate}
             </div>
         </div>
@@ -33,13 +33,13 @@ export const BlogCard = ({id, authorName, title, content, PublishedDate }: BlogC
             {title}
             </Link>
         </div>
-        <div className="text-base">
+        <div className="text-base font-nunito">
         {parse(truncatedContent)}
         </div>
-        <div className="text-sm font-light pt-2">
-            {`${Math.ceil(content.length / 100)} minutes read`}
-        </div>
-        <div className="border bottom-1 mt-2 mb-2"></div>
+        <span className="text-sm font-light mt-3  bg-slate-100">
+            {`${Math.ceil(content.split(' ').length / 200)} minutes read`}
+        </span>
+      
     </div>
 }
 

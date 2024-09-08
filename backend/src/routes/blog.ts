@@ -24,7 +24,7 @@ blogRouter.use('/*', async (c, next) => {
     } } catch(e){
         console.log(e)
         c.status(403)
-        return c.json({msg: "caught error here"})
+        return c.json({msg: "Authorization Failed"})
     }
 
 })

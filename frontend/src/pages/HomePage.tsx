@@ -1,18 +1,35 @@
-import { Pen, Globe, Users, Zap } from "lucide-react"
+import { Globe, Users, Zap } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Button } from "flowbite-react";
-
+import { useState, useEffect } from "react";
 export const HomePage = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
+    <div className="flex flex-col min-h-screen bg-zinc-950 ">
+      <header
+        className={`px-4 lg:px-6 h-14 flex items-center bg-slate-100 sticky z-50 top-0 transition-all duration-300 ${isScrolled ? "rounded-full w-3/4 mx-auto shadow-lg" : "w-full"
+          }`}
+      >
         <Link to={'/'} className="flex items-center justify-center">
-          <Pen className="h-6 w-6" />
+          <img src="/globe.png" className="h-12 w-12 max-w-full" />
           <span className="sr-only">Story Sphere</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link to={'/'} className="text-sm font-medium hover:underline underline-offset-4" >
-            Features
+
+          <Link to={'/signin'} className="text-sm font-medium hover:underline underline-offset-4">
+            Blogs
           </Link>
           <Link to={'/'} className="text-sm font-medium hover:underline underline-offset-4">
             Pricing
@@ -20,42 +37,42 @@ export const HomePage = () => {
           <Link to={'/'} className="text-sm font-medium hover:underline underline-offset-4">
             About
           </Link>
-          <Link to={'/'} className="text-sm font-medium hover:underline underline-offset-4">
-            Contact
-          </Link>
         </nav>
       </header>
       <main className="flex-1">
         <section
-          className="w-full py-12 md:py-24 lg:py-32 xl:py-48 flex items-center justify-center bg-cover bg-center bg-no-repeat" // Added background image styling
+          className="overflow-hidden w-full bg-zinc-950 py-12 md:py-24 lg:py-32 xl:py-48 flex items-center justify-center bg-cover bg-center bg-no-repeat" // Added background image styling
           style={{
-            backgroundImage: "url('globe.png')",
-            backgroundSize: '650px 650px', // Set specific width and height for the background image
-            backgroundPosition: 'left',  // Adjust image position to the center
+            backgroundImage: "url('earth.png')",
+            backgroundSize: 'cover', // Set specific width and height for the background image
+            backgroundPosition: 'left center',  // Adjust image position to the center
             backgroundRepeat: 'no-repeat'
           }} // Inline style to set the background image URL
         >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
-                <h1 className=" text-neutral-800 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                  Welcome to Story Sphere
+                <h1 className=" text-white text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
+                  <span className="hover:text-blue-300">Welcome</span>
+                  <span className="hover:text-blue-300"> to</span>
+                  <span className="hover:text-blue-300 "> Story</span>
+                  <span className="hover:text-blue-300 "> Sphere</span>
                 </h1>
-                <p className="mx-auto max-w-[700px] text-gray-400 md:text-xl">
-                  Unleash your creativity and connect with readers worldwide. Start your blogging journey today.
+                <p className=" mx-auto max-w-[700px] text-slate-300 md:text-lg">
+                  Share your stories and connect with readers globally. Start blogging now!
                 </p>
               </div>
               <div>
-                <Link to={'/signin'} className="space-x-4 flex items-center">
+                <Link to={'/signup'} className="space-x-4 flex items-center">
                   <Button size={'xl'} className="px-2" color="dark">Get Started</Button>
-                  <Button size={'xl'} className="px-2" color="light">Learn More</Button>
+                  <Button size={'xl'} className="hidden sm:block md:px-2" color="light">Learn More</Button>
                 </Link>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800  flex items-center justify-center"
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-slate-800  flex items-center justify-center"
         >
           <div className="container px-4 md:px-6">
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -83,8 +100,8 @@ export const HomePage = () => {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32  flex items-center justify-center"
-          >
+        <section className="w-full py-12 md:py-24 lg:py-32  flex items-center justify-center bg-white"
+        >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">

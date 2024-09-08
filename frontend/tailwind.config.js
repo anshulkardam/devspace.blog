@@ -8,7 +8,11 @@ export default {
     extend: {
       colors: {
         brown: '#745e59',
-      }
+      },
+      fontFamily: {
+        nunito: ['Nunito Sans', 'sans-serif'],
+        
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],
