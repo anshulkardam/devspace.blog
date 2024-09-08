@@ -7,9 +7,18 @@ import { Button } from "flowbite-react"
 import { Clock, Shuffle } from "lucide-react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react"
 
 export const Blogs = () => {
     const { loading, blogs } = useBlogs()
+
+    const [time, setTime] = useState(0);
+
+    const wordcheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const words = e.target.value.trim().split(/\s+/).filter((word) => word.length > 0);
+        const wordCount = words.length;
+        setTime(Math.ceil(wordCount / 200)); // Assuming 200 words per minute reading speed
+    }
     if (!loading) {
         return <div>
             <Appbar name='A' />
@@ -17,9 +26,9 @@ export const Blogs = () => {
 
         </div>
     }
-   
-        const notify = () => toast.info("Subscribed!");
-        const notifysoon = () => toast.info("coming soon!");
+
+    const notify = () => toast.info("Subscribed!");
+    const notifysoon = () => toast.info("coming soon!");
 
     const formatDate = (isoDateString: string): string => {
         const date = new Date(isoDateString);
@@ -86,7 +95,7 @@ export const Blogs = () => {
                                 </li>
                                 <li className="text-sm hover:underline cursor-pointer text-blue-600">
                                     <Link to={'/blog/3278c0ac-9dc0-4f64-8f2e-57a8888eadf7'} >
-                                    Understanding JavaScript Promises: A Deep Dive
+                                        Understanding JavaScript Promises: A Deep Dive
                                     </Link>
                                 </li>
                                 <li className="text-sm hover:underline cursor-pointer text-blue-600">
@@ -102,18 +111,18 @@ export const Blogs = () => {
                             <h3 className="font-semibold mb-2">Reading Time Estimator</h3>
                             <div className="flex items-center space-x-2">
                                 <Clock className="w-4 h-4 text-gray-600" />
-                                <input type="text" placeholder="Word count" className="text-black w-1/2 border-2 border-black rounded-md p-1 font-nunito" />
-                                <span className="text-sm">≈ <span className="font-semibold">0</span> min read</span>
+                                <input type="text" onChange={wordcheck} placeholder="Word count" className="text-black w-1/2 border-2 border-black rounded-md p-1 font-nunito" />
+                                <span className="text-sm">≈ <span className="font-semibold">{time}</span> min read</span>
                             </div>
                         </div>
 
                         <div className="bg-white rounded-lg p-4 shadow">
                             <h3 className="font-semibold mb-2 text-center">Discover a Random Story</h3>
                             <Link to={'/blog/3278c0ac-9dc0-4f64-8f2e-57a8888eadf7'} >
-                            <Button color="dark" className="w-full py-1">
-                                <Shuffle className="w-4 h-4 mr-2" />
-                                Random Story
-                            </Button>
+                                <Button color="dark" className="w-full py-1">
+                                    <Shuffle className="w-4 h-4 mr-2" />
+                                    Random Story
+                                </Button>
                             </Link>
                         </div>
 
@@ -129,16 +138,16 @@ export const Blogs = () => {
                 </div>
             </div>
             <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500 dark:text-gray-400">© 2023 Story Sphere. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link to={'/'} className="text-xs hover:underline underline-offset-4" >
-            Terms of Service
-          </Link>
-          <Link to={'/'} className="text-xs hover:underline underline-offset-4" >
-            Privacy
-          </Link>
-        </nav>
-      </footer>
+                <p className="text-xs text-gray-500 dark:text-gray-400">© 2023 Story Sphere. All rights reserved.</p>
+                <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+                    <Link to={'/'} className="text-xs hover:underline underline-offset-4" >
+                        Terms of Service
+                    </Link>
+                    <Link to={'/'} className="text-xs hover:underline underline-offset-4" >
+                        Privacy
+                    </Link>
+                </nav>
+            </footer>
         </div>
     )
 }
