@@ -1,17 +1,38 @@
 {
+  "name": "devspace-backend",
+  "version": "1.0.0",
+  "description": "",
+  "type": "commonjs",
+  "main": "dist/server.js",
   "scripts": {
-    "dev": "wrangler dev src/index.ts",
-    "deploy": "wrangler deploy --minify src/index.ts"
+    "dev": "nodemon",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.8.1",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@anshulkardam/medium-common": "^1.0.0",
-    "@prisma/client": "^5.17.0",
-    "@prisma/extension-accelerate": "^1.1.0",
-    "hono": "^4.4.2",
-    "prisma": "^5.17.0"
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240529.0",
-    "wrangler": "^3.57.2"
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "mongoose": "^8.19.1",
+    "tsconfig-paths": "^4.2.0",
+    "winston": "^3.18.3"
   }
 }

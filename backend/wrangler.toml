@@ -1,7 +1,0 @@
-name = "medium"
-compatibility_date = "2023-12-01"
-
-[vars]
-DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNjFiYjA5N2EtYTI1ZS00MzYxLTkzZDctODEyOTM1NmQwYWI5IiwidGVuYW50X2lkIjoiNjk3ODc3Y2RkNzQ1MTdkMmFlNWM0NDdiNTliMmIxZWE4MjFlZDQ0ZjcyZGI2NGZlNjQzOTNmYTQxZDg0NmE5NCIsImludGVybmFsX3NlY3JldCI6IjhjZmI3NmQzLWY3NDAtNDJlYi1hMGQzLTdmYWMyY2YyMDFlNyJ9.TSwkSPJWqtJbpMNw1Djh7CqZ38OceEtB939pdFpFj5o"
-
-JWT_SECRET = "karzemo"
