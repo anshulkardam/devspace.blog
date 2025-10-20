@@ -8,6 +8,7 @@ import limiter from '@/lib/express_rate_limit';
 import v1Routes from './routes/v1';
 import { connectToDatabase, disconnectFromDatabase } from '@/lib/mongoose';
 import { logger } from '@/lib/winston';
+import { errorHandler } from './utils/CustomError';
 
 const app = express();
 
@@ -30,9 +31,9 @@ const corsOptions: CorsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use(express.json());
+app.use(express.json({ limit: '1mb' }));
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 app.use(cookieParser());
 
@@ -52,6 +53,8 @@ app.use(limiter); // Rate Limiter
     await connectToDatabase();
 
     app.use('/api/v1', v1Routes);
+
+    app.use(errorHandler);
 
     app.listen(config.PORT, () => {
       logger.info(`Server Running: http://localhost:${config.PORT}`);
