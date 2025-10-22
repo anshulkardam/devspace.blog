@@ -15,6 +15,9 @@ const config = {
   WHITELIST_ADMIN_MAIL: (process.env.WHITELIST_ADMIN_MAIL || '')
     .split(',')
     .map((email) => email.trim()),
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME!,
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET!,
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY!,
 };
 
 export default config;
